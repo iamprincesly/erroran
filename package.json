@@ -1,0 +1,31 @@
+{
+  "name": "erroran",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamprincesly/erroran.git"
+  },
+  "keywords": [
+    "node.js",
+    "error",
+    "handler",
+    "erroran"
+  ],
+  "author": "Sylvanus Etim <iamprincesly@gmail.com> (https://github.com/iamprincesly/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamprincesly/erroran/issues"
+  },
+  "homepage": "https://github.com/iamprincesly/erroran#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
