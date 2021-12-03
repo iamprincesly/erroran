@@ -93,8 +93,7 @@ class Erroran {
      *
      * @static
      * @param {*} message
-     * @param {*} statusCode
-     * @param {*} [description=this.FORBIDDEN]
+     * @param {*} [statusCode=this.FORBIDDEN]
      * @param {string} [description='Forbidden.']
      * @param {boolean} [isOperational=true]
      * @return {*} 
@@ -102,8 +101,7 @@ class Erroran {
      */
     static forbidden(
         message,
-        statusCode,
-        description = this.FORBIDDEN,
+        statusCode = this.FORBIDDEN,
         description = 'Forbidden.',
         isOperational = true
     ) {
