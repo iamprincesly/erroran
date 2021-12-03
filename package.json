@@ -1,7 +1,7 @@
 {
   "name": "erroran",
   "version": "0.1.0",
-  "description": "",
+  "description": "Erroran is a node.js package for providing error handling middleware in Express app. It can be used for throwing operational error in JSON response to the client",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -14,10 +14,10 @@
     "url": "git+https://github.com/iamprincesly/erroran.git"
   },
   "keywords": [
-    "node.js",
+    "erroran",
     "error",
     "handler",
-    "erroran"
+    "node.js"
   ],
   "author": "Sylvanus Etim <iamprincesly@gmail.com> (https://github.com/iamprincesly/)",
   "license": "MIT",
