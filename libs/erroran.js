@@ -29,7 +29,7 @@ class Erroran {
      * @param {*} [statusCode=this.NOT_FOUND]
      * @param {string} [description='Not Found.']
      * @param {boolean} [isOperational=true]
-     * @return {*} 
+     * @return {object} new BaseError  
      * @memberof Erroran
      */
     static notFound(
@@ -51,7 +51,7 @@ class Erroran {
      * @param {*} [statusCode=this.BAD_REQUEST]
      * @param {string} [description='Bad Request.']
      * @param {boolean} [isOperational=true]
-     * @return {*} 
+     * @return {object} new BaseError 
      * @memberof Erroran
      */
     static badRequest(
@@ -73,7 +73,7 @@ class Erroran {
      * @param {*} [statusCode=this.NOT_AUTHENTICATED]
      * @param {string} [description='Not Authorized.']
      * @param {boolean} [isOperational=true]
-     * @return {*} 
+     * @return {object} new BaseError 
      * @memberof Erroran
      */
     static notAuthenticated(
@@ -96,7 +96,7 @@ class Erroran {
      * @param {*} [statusCode=this.FORBIDDEN]
      * @param {string} [description='Forbidden.']
      * @param {boolean} [isOperational=true]
-     * @return {*} 
+     * @return {object} new BaseError 
      * @memberof Erroran
      */
     static forbidden(
@@ -119,7 +119,7 @@ class Erroran {
      * @param {*} [statusCode=this.INTERNAL_SERVER]
      * @param {string} [description='Internal Server Error.']
      * @param {boolean} [isOperational=true]
-     * @return {*} 
+     * @return {object} new BaseError 
      * @memberof Erroran
      */
     static internalServer(
@@ -142,6 +142,7 @@ class Erroran {
      * @param {*} req
      * @param {*} res
      * @param {*} next
+     * @return JSON response
      * @memberof Erroran
      */
     static handler = (err, req, res, next) => {
