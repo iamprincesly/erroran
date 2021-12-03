@@ -1,5 +1,6 @@
 # Erroran
-Erroran is a node.js package for providing error handling middleware in express app.
+
+Erroran is a node.js package for providing error handling middleware in [Express](http://expressjs.com/) app. It can be used for throwing operational error in JSON response to the client.
 
 **[Follow me (@iamprincesly) on Twitter!](https://twitter.com/iamprincesly)**
 
