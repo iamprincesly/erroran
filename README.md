@@ -1,8 +1,8 @@
 # Erroran
 
-Erroran is a node.js package for providing error handling middleware in [Express](http://expressjs.com/) app. It can be used for throwing operational error in JSON response to the client.
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamprincesly/erroran/Release?style=flat-square) ![NPM](https://img.shields.io/npm/l/erroran?style=flat-square) ![npm](https://img.shields.io/npm/v/erroran?style=flat-square) ![npm](https://img.shields.io/npm/dm/erroran?style=flat-square) ![GitHub Repo stars](https://img.shields.io/github/stars/iamprincesly/erroran?style=flat-square) ![Twitter Follow](https://img.shields.io/twitter/follow/iamprincesly?style=flat-square)
 
-**[Follow me (@iamprincesly) on Twitter!](https://twitter.com/iamprincesly)**
+Erroran is a node.js package for providing error handling middleware in [Express](http://expressjs.com/) app. It can be used for throwing operational error in JSON response to the client.
 
 * [Installation](#installation)
 * [Usage](#usage)
