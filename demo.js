@@ -11,11 +11,11 @@
  const app = express();
  
  app.get('/test', (req, res, next) => {
-    return next(Erroran.internalServerErrorP('This is my own error.'));
+    return next(Erroran.internalServerError('This is my own error.'));
  });
  
  app.use(Erroran.errorHandler);
- 
+
  const PORT = 3000;
 
  app.listen(PORT, () => {
