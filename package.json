@@ -1,6 +1,6 @@
 {
   "name": "erroran",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Erroran is a node.js package for providing error handling middleware in Express app. It can be used for throwing operational error in JSON response to the client",
   "main": "index.js",
   "directories": {
