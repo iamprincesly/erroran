@@ -103,6 +103,11 @@ var Erroran = require('erroran');
 Erroran.internalServer('Oh no, something went wrong');
 ```
 
+### Other programming errors
+For other programming errors, Erroran will send full error stack and error message in development with 500 status code while sending 'Something went wrong, please try again later' error message with 500 status code in production.
+
+All errors are sent in JSON response.
+
 ## License
 
 [MIT License](http://www.opensource.org/licenses/mit-license.php)

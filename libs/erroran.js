@@ -147,15 +147,15 @@ class Erroran {
      */
     static handler = (err, req, res, next) => {
         if (process.env.NODE_ENV === 'production') {
-            return res.status(err.statusCode).json({
-                status: err.status,
+            return res.status(err.statusCode || 500).json({
+                status: err.status || 'Internal Server Error',
                 description: err.description,
-                message: err.message,
+                message: 'Something went wrong, please try again later',
             });
         }
 
-        return res.status(err.statusCode).json({
-            status: err.status,
+        return res.status(err.statusCode || 500).json({
+            status: err.status || 'Internal Server Error',
             description: err.description,
             message: err.message,
             stack: err.stack,
