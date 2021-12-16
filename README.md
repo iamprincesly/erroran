@@ -30,7 +30,7 @@ var app = express();
 // Make sure this is always your last middleware
 app.use(Erroran.handler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const server = app.listen(PORT, () => {
     console.log(
@@ -47,7 +47,7 @@ var app = express();
 
 app.get('/products/:id', cors(), function (req, res, next) {
     return next(
-        Erroran.notAuthenticated('You are not logged in! Please log in to get access');
+        Erroran.notAuthenticated('You are not logged in! Please log in to get access')
     );
 })
 
@@ -56,7 +56,7 @@ app.use(Erroran.handler);
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(
         `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
