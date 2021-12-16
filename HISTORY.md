@@ -1,4 +1,4 @@
-0.1.2 / 2021-12-16
+0.1.3 / 2021-12-16
 ==================
   * Fixed programming error
   * Update documentation
