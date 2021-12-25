@@ -1,166 +1,330 @@
-'use strict';
-
 /**
  * Erroran
  * @author Sylvanus Etim <iamprincesly@gmail.com>
  * @copyright Erroran Copyright(c) 2021
  * @license MIT Licensed
  */
-const BaseError = require('./base');
 
-/**
- * Do not instantial this class directly
- * just call the static methods on the class
- * @class Erroran
- */
-class Erroran {
-    static OK = 200;
+'use strict';
+
+module.exports = class Erroran extends Error {
     static BAD_REQUEST = 400;
-    static NOT_FOUND = 404;
     static NOT_AUTHENTICATED = 401;
+    static PAYMENT_REQUIRED  = 402;
     static FORBIDDEN = 403;
-    static INTERNAL_SERVER = 500;
+    static NOT_FOUND = 404;
+    static UNSUPPORTED_METHOD = 405;
+    static NOT_ACCEPTABLE = 406;
+    static PROXY_AUTHENTICATION_REQUIRED = 407;
+    static REQUEST_TIMEOUT = 408;
+    static CONFLICT = 409;
+    static GONE = 410;
+    static LENGTH_REQUIRED = 411;
+    static PRECONDITION_FAILED = 412;
+    static REQUEST_ENTITY_TOO_LARGE = 413;
+    static REQUEST_URI_TOO_LONG = 414;
+    static UNSUPPORTED_MEDIA_TYPE = 415;
+    static REQUESTED_RANGE_NOT_SATISFIABLE = 416;
+    static EXPECTATION_FAILED = 417;
+    static INTERNAL_SERVER_ERROR = 500;
+    static NOT_IMPLEMENTED = 501;
+    static BAD_GATEWAY = 502;
+    static SERVICE_UNAVAILABLE = 503;
+    static GATEWAY_TIMEOUT = 504;
+    static UNSUPPORTED_HTTP_VERSION = 505;
 
-    /**
-     * This will automatically send 404 status code 
-     * and your desire message to the client
-     * @static
-     * @param {*} message
-     * @param {*} [statusCode=this.NOT_FOUND]
-     * @param {string} [description='Not Found.']
-     * @param {boolean} [isOperational=true]
-     * @return {object} new BaseError  
-     * @memberof Erroran
-     */
-    static notFound(
-        message,
-        statusCode = this.NOT_FOUND,
-        description = 'Not Found.',
-        isOperational = true
-    ) {
-        if (!message) throw new Error('Please enter error message');
-
-        return new BaseError(message, statusCode, description, isOperational);
+    constructor(message, statusCode = 500) {
+        super(message);
+        this.statusCode = statusCode;
+        this.status = `${statusCode}`.startsWith('4') ? 'failed' : 'error';
+        this.isOperational = true;
     }
 
     /**
-     * This will automatically send 400 status code 
+     * This will automatically send '400' status code
      * and your desire message to the client
      * @static
-     * @param {*} message
-     * @param {*} [statusCode=this.BAD_REQUEST]
-     * @param {string} [description='Bad Request.']
-     * @param {boolean} [isOperational=true]
-     * @return {object} new BaseError 
+     * @param {string} [message='Bad Request]
+     * @throw {object} Erroran
      * @memberof Erroran
      */
-    static badRequest(
-        message,
-        statusCode = this.BAD_REQUEST,
-        description = 'Bad Request.',
-        isOperational = true
-    ) {
-        if (!message) throw new Error('Please enter error message');
-
-        return new BaseError(message, statusCode, description, isOperational);
+    static badRequest(message = 'Bad Request') {
+        throw new Erroran(message, this.BAD_REQUEST);
     }
 
     /**
-     * This will automatically send 401 status code 
+     * This will automatically send '401' status code
      * and your desire message to the client
      * @static
-     * @param {*} message
-     * @param {*} [statusCode=this.NOT_AUTHENTICATED]
-     * @param {string} [description='Not Authorized.']
-     * @param {boolean} [isOperational=true]
-     * @return {object} new BaseError 
+     * @param {string} [message='Not authenticated']
+     * @throw {object} Erroran
      * @memberof Erroran
      */
-    static notAuthenticated(
-        message,
-        statusCode = this.NOT_AUTHENTICATED,
-        description = 'Not Authorized.',
-        isOperational = true
-    ) {
-        if (!message) throw new Error('Please enter error message');
-
-        return new BaseError(message, statusCode, description, isOperational);
+    static notAuthenticated(message = 'Not authenticated') {
+        throw new Erroran(message, this.NOT_AUTHENTICATED);
     }
 
     /**
-     * This will automatically send 403 status code 
+     * This will automatically send '402' status code
      * and your desire message to the client
-     *
      * @static
-     * @param {*} message
-     * @param {*} [statusCode=this.FORBIDDEN]
-     * @param {string} [description='Forbidden.']
-     * @param {boolean} [isOperational=true]
-     * @return {object} new BaseError 
+     * @param {string} [message='Payment Required']
+     * @throw {object} Erroran
      * @memberof Erroran
      */
-    static forbidden(
-        message,
-        statusCode = this.FORBIDDEN,
-        description = 'Forbidden.',
-        isOperational = true
-    ) {
-        if (!message) throw new Error('Please enter error message');
-
-        return new BaseError(message, statusCode, description, isOperational);
+    static paymentRequired(message = 'Payment Required') {
+        throw new Erroran(message, this.PAYMENT_REQUIRED);
     }
 
     /**
-     * This will automatically send 500 status code 
+     * This will automatically send '403' status code
      * and your desire message to the client
-     *
      * @static
-     * @param {*} message
-     * @param {*} [statusCode=this.INTERNAL_SERVER]
-     * @param {string} [description='Internal Server Error.']
-     * @param {boolean} [isOperational=true]
-     * @return {object} new BaseError 
+     * @param {string} [message='Forbidden']
+     * @throw {object} Erroran
      * @memberof Erroran
      */
-    static internalServer(
-        message,
-        statusCode = this.INTERNAL_SERVER,
-        description = 'Internal Server Error.',
-        isOperational = true
-    ) {
-        if (!message) throw new Error('Please enter error message');
-
-        return new BaseError(message, statusCode, description, isOperational);
+    static forbidden(message = 'Forbidden') {
+        throw new Erroran(message, this.FORBIDDEN);
     }
 
     /**
-     * Call this middleware as your last middleware 
-     * in your server script.
-     *
+     * This will automatically send '404' status code
+     * and your desire message to the client
      * @static
-     * @param {*} err
-     * @param {*} req
-     * @param {*} res
-     * @param {*} next
-     * @return JSON response
+     * @param {string} [message='Not Found]
+     * @throw {object} Erroran
      * @memberof Erroran
      */
-    static handler = (err, req, res, next) => {
-        if (process.env.NODE_ENV === 'production') {
-            return res.status(err.statusCode || 500).json({
-                status: err.status || 'Internal Server Error',
-                description: err.description,
-                message: 'Something went wrong, please try again later',
-            });
-        }
+    static notFound(message = 'Not Found') {
+        throw new Erroran(message, this.NOT_FOUND);
+    }
 
-        return res.status(err.statusCode || 500).json({
-            status: err.status || 'Internal Server Error',
-            description: err.description,
-            message: err.message,
-            stack: err.stack,
-        });
-    };
-}
+    /**
+     * This will automatically send '405' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='HTTP Method Not Allowed']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static unsupportedHTTPMethod(message = 'HTTP Method Not Allowed') {
+        throw new Erroran(message, this.UNSUPPORTED_METHOD);
+    }
 
-module.exports = Erroran;
+    /**
+     * This will automatically send '406' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Not Acceptable']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static notAcceptable(message = 'Not Acceptable') {
+        throw new Erroran(message, this.NOT_ACCEPTABLE);
+    }
+
+    /**
+     * This will automatically send '407' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Proxy Authentication Required']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static proxyAuthenticationRequired(message = 'Proxy Authentication Required') {
+        throw new Erroran(message, this.PROXY_AUTHENTICATION_REQUIRED);
+    }
+
+    /**
+     * This will automatically send '408' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Request Timeout']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static requestTimeout(message = 'Request Timeout') {
+        throw new Erroran(message, this.REQUEST_TIMEOUT);
+    }
+
+    /**
+     * This will automatically send '409' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Conflict']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static conflict(message = 'Conflict') {
+        throw new Erroran(message, this.CONFLICT);
+    }
+
+    /**
+     * This will automatically send '410' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Gone']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static gone(message = 'Gone') {
+        throw new Erroran(message, this.GONE);
+    }
+
+    /**
+     * This will automatically send '411' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Length Required']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static lengthRequired(message = 'Length Required') {
+        throw new Erroran(message, this.LENGTH_REQUIRED);
+    }
+
+    /**
+     * This will automatically send '412' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Precondition Failed']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+     static preconditionFailed(message = 'Precondition Failed') {
+        throw new Erroran(message, this.PRECONDITION_FAILED);
+    }
+
+    /**
+     * This will automatically send '413' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Request Entity Too Large']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static requestEntityTooLarge(message = 'Request Entity Too Large') {
+        throw new Erroran(message, this.REQUEST_ENTITY_TOO_LARGE);
+    }
+
+    /**
+     * This will automatically send '414' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Request-URI Too Long']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static requestURITooLong(message = 'Request-URI Too Long') {
+        throw new Erroran(message, this.REQUEST_URI_TOO_LONG);
+    }
+
+    /**
+     * This will automatically send '415' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Unsupported Media Type']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static unsupportedMediaType(message = 'Unsupported Media Type') {
+        throw new Erroran(message, this.UNSUPPORTED_MEDIA_TYPE);
+    }
+
+    /**
+     * This will automatically send '416' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Requested Range Not Satisfiable']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static requestedRangeNotSatisfiable(message = 'Requested Range Not Satisfiable') {
+        throw new Erroran(message, this.REQUESTED_RANGE_NOT_SATISFIABLE);
+    }
+
+    /**
+     * This will automatically send '417' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Expectation Failed']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static expectationFailed(message = 'Expectation Failed') {
+        throw new Erroran(message, this.EXPECTATION_FAILED);
+    }
+
+    /**
+     * This will automatically send '500' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Internal Server Error']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static internalServerError(message = 'Internal Server Error') {
+        throw new Erroran(message, this.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * This will automatically send '501' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Not Implemented']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static notImplemented(message = 'Not Implemented') {
+        throw new Erroran(message, this.NOT_IMPLEMENTED);
+    }
+
+    /**
+     * This will automatically send '502' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Bad Gateway']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static badGateway(message = 'Bad Gateway') {
+        throw new Erroran(message, this.BAD_GATEWAY);
+    }
+
+    /**
+     * This will automatically send '503' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Service Unavailable']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static serviceUnavailable(message = 'Service Unavailable') {
+        throw new Erroran(message, this.SERVICE_UNAVAILABLE);
+    }
+
+    /**
+     * This will automatically send '504' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='Getway Timeout']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static getwayTimout(message = 'Getway Timeout') {
+        throw new Erroran(message, this.GATEWAY_TIMEOUT);
+    }
+
+    /**
+     * This will automatically send '505' status code
+     * and your desire message to the client
+     * @static
+     * @param {string} [message='HTTP Version Not Supported']
+     * @throw {object} Erroran
+     * @memberof Erroran
+     */
+    static unsupportedHTTPVersion(message = 'HTTP Version Not Supported') {
+        throw new Erroran(message, this.UNSUPPORTED_HTTP_VERSION);
+    }
+};
