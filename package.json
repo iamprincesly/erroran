@@ -1,14 +1,8 @@
 {
   "name": "erroran",
   "version": "0.1.3",
-  "description": "Erroran is a node.js package for providing error handling middleware in Express app. It can be used for throwing operational error in JSON response to the client",
+  "description": "A simple error handling middleware made for Express app.",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "jest --watchAll"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iamprincesly/erroran.git"
@@ -24,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/iamprincesly/erroran/issues"
   },
-  "homepage": "https://github.com/iamprincesly/erroran#readme",
-  "devDependencies": {
-    "jest": "^27.3.1"
-  }
+  "homepage": "https://github.com/iamprincesly/erroran#readme"
 }
