@@ -11,17 +11,82 @@
  documentation and/or other materials provided with the distribution.
  3. The name of the author may not be used to endorse or promote products
  derived from this software without specific prior written permission.
-
- THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
- IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
- INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+'use strict';
 
-module.exports = require("./libs/erroran.js");
+var helpers = require("./libs/helpers");
+var Erroran = require("./libs/erroran");
+
+module.exports = { Erroran, ErroranHandler };
+
+/**
+ *
+ *
+ * @param {*} [options={}]
+ * @return {*} 
+ */
+function ErroranHandler(options = {}) {
+
+    if (!process.env.NODE_ENV) {
+        process.env.NODE_ENV = 'development';
+    }
+
+    var ProgrammingErrorMsg = options.ProgrammingErrorMsg || 'Something went wrong, please try again';
+
+    return  (err, req, res, next) => {
+        if (process.env.NODE_ENV === 'production') {
+            var error = { ...err };
+
+            var errorMessage;
+
+            error.ProgrammingErrorMsg = ProgrammingErrorMsg;
+            error.message = err.message;
+    
+            /**
+             * Throw CastErrorMsg in production
+             */
+            if (err.name === 'CastError'){
+                errorMessage = options.CastErrorMsg;
+                error = helpers.CastError(err, errorMessage);
+            }
+                
+            /**
+             * Throw MongoDBDuplicateKeyErrorMsg in production
+             */
+            if (err.code === 11000){
+                errorMessage = options.MongoDBDuplicateKeyErrorMsg;
+                error = helpers.MongoDBDuplicateFieldsError(err, errorMessage);
+            }
+
+            /**
+             * Throw ValidationErrorMsg in production
+             */
+            if (err.name === 'ValidationError') {
+                errorMessage = options.ValidationErrorMsg;
+                error = helpers.ValidationError(err, errorMessage);
+            }
+
+            /**
+             * Throw JsonWebTokenErrorMsg in production
+             */
+            if (err.name === 'JsonWebTokenError') {
+                errorMessage = options.JsonWebTokenErrorMsg;
+                error = helpers.JWTMalfunctionError(errorMessage);
+            }
+
+            /**
+             * Throw JsonTokenExpiredErrorMsg in production
+             */
+            if (err.name === 'TokenExpiredError') {
+                errorMessage = options.JsonTokenExpiredErrorMsg;
+                error = helpers.JWTExpiredError(errorMessage);
+            } 
+
+            helpers.handleProdError(error, req, res);
+    
+        } else {
+            helpers.handleDevError(err, req, res);
+        }
+    }
+    
+};
