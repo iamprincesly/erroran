@@ -7,34 +7,34 @@
 
 'use strict';
 
-const Erroran = require('./erroran');
+var Erroran = require('./erroran');
 
-const helpers = {};
+var helpers = {};
 
 helpers.CastError = (err, msg) => {
-    const message = msg || `Invalid ${err.path}: ${err.value}.`;
+    var message = msg || `Invalid ${err.path}: ${err.value}.`;
     return new Erroran(message, 400);
 };
 
 helpers.MongoDBDuplicateFieldsError = (err, msg) => {
-    const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0].trim('"');
-    const message = msg || `Duplicate field value: ${value}. Please use another value`;
+    var value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0].trim('"');
+    var message = msg || `Duplicate field value: ${value}. Please use another value`;
     return new Erroran(message, 400);
 };
 
 helpers.ValidationError = (err, msg) => {
-    const errors = Object.values(err.errors).map((el) => el.message);
-    const message = msg || `Invalid input data: ${errors.join('. ')}.`;
+    var errors = Object.values(err.errors).map((el) => el.message);
+    var message = msg || `Invalid input data: ${errors.join('. ')}.`;
     return new Erroran(message, 400);
 };
 
 helpers.JWTMalfunctionError = (msg) => {
-    const message = msg || 'Invalid token! Please generate token again.';
+    var message = msg || 'Invalid token! Please generate token again.';
     return new Erroran(message, 401);
 };
 
 helpers.JWTExpiredError = (msg) => {
-    const message = msg || 'Token has expired! Please generate token again';
+    var message = msg || 'Token has expired! Please generate token again';
     return new Erroran(message, 401);
 };
 
