@@ -1,10 +1,12 @@
 /**
  * Erroran
  * @author Sylvanus Etim <iamprincesly@gmail.com>
- * @copyright Erroran Copyright(c) 2021
- * @desc Demo project to demonstrate how erroran middleware work
+ * @copyright Copyright (c) 2021 Sylvanus Etim
  * @license MIT Licensed
  */
+
+'use strict';
+
 var express = require('express');
 var { Erroran, ErroranHandler } = require('erroran');
 var app = express();

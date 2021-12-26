@@ -20,10 +20,11 @@ var Erroran = require("./libs/erroran");
 module.exports = { Erroran, ErroranHandler };
 
 /**
- *
- *
+ * This is the main Erroran error handler middleware.
+ * Pass it to express app as the last middleware
+ * 
  * @param {*} [options={}]
- * @return {*} 
+ * @return {function} (err, req, res, next)
  */
 function ErroranHandler(options = {}) {
 
@@ -31,6 +32,7 @@ function ErroranHandler(options = {}) {
         process.env.NODE_ENV = 'development';
     }
 
+    // Set default programming error message in production
     var ProgrammingErrorMsg = options.ProgrammingErrorMsg || 'Something went wrong, please try again';
 
     return  (err, req, res, next) => {

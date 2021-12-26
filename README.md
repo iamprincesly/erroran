@@ -78,7 +78,7 @@ Sample response
 }
 ```
 
-NOTE: If you are throwing Erroran in async/await function make sure you catch the error object in a ```catch()``` block and pass it to the ```next()``` function like below.
+NOTE: If you are throwing Erroran in async/await function make sure you catch the error object in ```catch()``` block and pass it to the ```next()``` function like below.
 
 ```javascript
 var express = require('express');
@@ -105,7 +105,7 @@ app.listen(5000, () => {
 });
 ```
 
-If you throw Erroran in a `then()` chain you can as well catch the error in `catch()` block and pass it to the `next()` function like below
+If you throw Erroran in a `then()` chain you can as well catch the error in `catch()` block and pass it to the `next()` function like below.
 
 ```javascript
 User.findById(req.params.id)
@@ -151,7 +151,7 @@ Erroran.serviceUnavailable(); // 503 status code
 Erroran.getwayTimout(); // 504 status code
 Erroran.unsupportedHTTPVersion(); // 505 status code
 ```
-You can pass your desire error message to any of the Erroran static methods as an argument, example below:
+You can pass your desire error message to any of the Erroran static methods as an argument, example below.
 
 ```javascript
 var { Erroran } = require('erroran');
@@ -175,7 +175,7 @@ app.get('/products/:id', function (req, res, next) {
 
 Erroran has support for MongoDB, JWT and programming error. It catches MongoDB `'CastError'`, `'ValidationError'` and duplicate key `'11000'` error and also catches JWT `'JsonWebTokenError'` and `'TokenExpiredError'` in production.
 
-You can configure Erroran by passing an object parameter to the middleware like below:
+You can configure Erroran by passing an object as an argument to the middleware like below.
 
 ```javascript
 var express = require('express');

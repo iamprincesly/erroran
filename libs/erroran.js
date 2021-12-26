@@ -1,12 +1,18 @@
 /**
  * Erroran
  * @author Sylvanus Etim <iamprincesly@gmail.com>
- * @copyright Erroran Copyright(c) 2021
+ * @copyright Copyright (c) 2021 Sylvanus Etim
  * @license MIT Licensed
  */
 
 'use strict';
 
+/**
+ * Main class
+ *
+ * @class Erroran
+ * @extends {Error}
+ */
 module.exports = class Erroran extends Error {
     static BAD_REQUEST = 400;
     static NOT_AUTHENTICATED = 401;
