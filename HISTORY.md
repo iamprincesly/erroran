@@ -1,3 +1,7 @@
+1.0.1 / 2021-12-27
+==================
+  * Fixed 'SyntaxError' error in production
+
 1.0.0 / 2021-12-26
 ==================
   * Catches all programming errors
