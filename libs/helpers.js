@@ -12,6 +12,18 @@ var Erroran = require('./erroran');
 var helpers = {};
 
 /**
+ * Handle SyntaxError in production
+ * and return it to Erroran class
+ * 
+ * @param {string} msg
+ * @return {object} Erroran
+ * @memberof helpers
+ */
+helpers.SyntaxError = (msg) => {
+    return new Erroran(msg, 500);
+}
+
+/**
  * Handle MongDB 'CastError' in production and return it 
  * to Erroran class
  * 

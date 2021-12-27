@@ -45,6 +45,13 @@ function ErroranHandler(options = {}) {
             error.message = err.message;
     
             /**
+             * Throw SyntaxError in production
+             */
+            if (err.name === 'SyntaxError') {
+                error = helpers.SyntaxError(ProgrammingErrorMsg);
+            }
+
+            /**
              * Throw CastErrorMsg in production
              */
             if (err.name === 'CastError'){
