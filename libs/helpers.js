@@ -12,14 +12,17 @@ var Erroran = require('./erroran');
 var helpers = {};
 
 /**
- * Handle SyntaxError in production
+ * Handle programming in production
  * and return it to Erroran class
+ * 
+ * At the moment this handle 'SyntaxError', 'TypeError' and 'ReferenceError'
+ * looking forward to add more in future as I discovered them
  * 
  * @param {string} msg
  * @return {object} Erroran
  * @memberof helpers
  */
-helpers.SyntaxError = (msg) => {
+helpers.programmingError = (msg) => {
     return new Erroran(msg, 500);
 }
 

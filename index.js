@@ -45,10 +45,12 @@ function ErroranHandler(options = {}) {
             error.message = err.message;
     
             /**
-             * Throw SyntaxError in production
+             * Throw programming error in production.
+             * Catches 'SyntaxError', 'TypeError' and 'ReferenceError' at the moment.
+             * Looking forward to add more in the future as I discovered them.
              */
-            if (err.name === 'SyntaxError') {
-                error = helpers.SyntaxError(ProgrammingErrorMsg);
+            if (err.name === 'SyntaxError' || err.name === 'ReferenceError' || err.name === 'TypeError') {
+                error = helpers.programmingError(ProgrammingErrorMsg);
             }
 
             /**
