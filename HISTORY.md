@@ -1,3 +1,7 @@
+1.0.3 / 2022-1-3
+==================
+  * Added support for 'Error' erorr name
+
 1.0.2 / 2021-12-28
 ==================
   * Added support for 'ReferenceError' and 'TypeError'
