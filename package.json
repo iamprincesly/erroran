@@ -1,6 +1,6 @@
 {
   "name": "erroran",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple error handling middleware made for Express app.",
   "main": "index.js",
   "repository": {
