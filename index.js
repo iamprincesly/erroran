@@ -14,28 +14,28 @@
  */
 'use strict';
 
-var helpers = require("./libs/helpers");
-var Erroran = require("./libs/erroran");
+var helpers = require('./libs/helpers');
+var Erroran = require('./libs/erroran');
 
 module.exports = { Erroran, ErroranHandler };
 
 /**
  * This is the main Erroran error handler middleware.
  * Pass it to express app as the last middleware
- * 
+ *
  * @param {*} [options={}]
  * @return {function} (err, req, res, next)
  */
 function ErroranHandler(options = {}) {
-
     if (!process.env.NODE_ENV) {
         process.env.NODE_ENV = 'development';
     }
 
     // Set default programming error message in production
-    var ProgrammingErrorMsg = options.ProgrammingErrorMsg || 'Something went wrong, please try again';
+    var ProgrammingErrorMsg =
+        options.ProgrammingErrorMsg || 'Something went wrong, please try again';
 
-    return  (err, req, res, next) => {
+    return (err, req, res, next) => {
         if (process.env.NODE_ENV === 'production') {
             var error = { ...err };
 
@@ -43,28 +43,34 @@ function ErroranHandler(options = {}) {
 
             error.ProgrammingErrorMsg = ProgrammingErrorMsg;
             error.message = err.message;
-    
+
             /**
              * Throw programming error in production.
-             * Catches 'SyntaxError', 'TypeError' and 'ReferenceError' at the moment.
+             * Catches 'SyntaxError', 'Error', 'TypeError' and 
+             * 'ReferenceError' error names at the moment.
              * Looking forward to add more in the future as I discovered them.
              */
-            if (err.name === 'SyntaxError' || err.name === 'ReferenceError' || err.name === 'TypeError') {
+            if (
+                err.name === 'SyntaxError' ||
+                err.name === 'ReferenceError' ||
+                err.name === 'TypeError' ||
+                err.name === 'Error'
+            ) {
                 error = helpers.programmingError(ProgrammingErrorMsg);
             }
 
             /**
              * Throw CastErrorMsg in production
              */
-            if (err.name === 'CastError'){
+            if (err.name === 'CastError') {
                 errorMessage = options.CastErrorMsg;
                 error = helpers.CastError(err, errorMessage);
             }
-                
+
             /**
              * Throw MongoDBDuplicateKeyErrorMsg in production
              */
-            if (err.code === 11000){
+            if (err.code === 11000) {
                 errorMessage = options.MongoDBDuplicateKeyErrorMsg;
                 error = helpers.MongoDBDuplicateFieldsError(err, errorMessage);
             }
@@ -91,13 +97,11 @@ function ErroranHandler(options = {}) {
             if (err.name === 'TokenExpiredError') {
                 errorMessage = options.JsonTokenExpiredErrorMsg;
                 error = helpers.JWTExpiredError(errorMessage);
-            } 
+            }
 
             helpers.handleProdError(error, req, res);
-    
         } else {
             helpers.handleDevError(err, req, res);
         }
-    }
-    
-};
+    };
+}
