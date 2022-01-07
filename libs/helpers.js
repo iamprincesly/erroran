@@ -15,8 +15,9 @@ var helpers = {};
  * Handle programming in production
  * and return it to Erroran class
  * 
- * At the moment this handle 'SyntaxError', 'Error', 
- * 'TypeError' and 'ReferenceError' error names
+ * At the moment this handle 'SyntaxError', 'Error', 'RangeError', 'URIError',
+ * 'AggregateError', 'InternalError', 'EvalError', 'TypeError' and
+ * 'ReferenceError' error names
  * looking forward to add more in future as I discovered them
  * 
  * @param {string} msg

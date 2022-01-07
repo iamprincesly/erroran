@@ -46,15 +46,21 @@ function ErroranHandler(options = {}) {
 
             /**
              * Throw programming error in production.
-             * Catches 'SyntaxError', 'Error', 'TypeError' and 
+             * Catches 'SyntaxError', 'Error', 'RangeError', 'URIError',
+             * 'AggregateError', 'InternalError', 'EvalError', 'TypeError' and
              * 'ReferenceError' error names at the moment.
              * Looking forward to add more in the future as I discovered them.
              */
             if (
                 err.name === 'SyntaxError' ||
-                err.name === 'ReferenceError' ||
+                err.name === 'Error' ||
+                err.name === 'RangeError' ||
+                err.name === 'URIError' ||
+                err.name === 'AggregateError' ||
+                err.name === 'InternalError' ||
+                err.name === 'EvalError' ||
                 err.name === 'TypeError' ||
-                err.name === 'Error'
+                err.name === 'ReferenceError'
             ) {
                 error = helpers.programmingError(ProgrammingErrorMsg);
             }
