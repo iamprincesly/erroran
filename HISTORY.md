@@ -1,14 +1,18 @@
+1.0.4 / 2022-1-8
+==================
+  * Added support for ```'EvalError'```, ```'RangeError'```, ```'URIError'```, ```'AggregateError'``` and ```'InternalError'``` erorr name
+
 1.0.3 / 2022-1-3
 ==================
-  * Added support for 'Error' erorr name
+  * Added support for ```'Error'``` erorr name
 
 1.0.2 / 2021-12-28
 ==================
-  * Added support for 'ReferenceError' and 'TypeError'
+  * Added support for ```'ReferenceError'``` and ```'TypeError'```
 
 1.0.1 / 2021-12-27
 ==================
-  * Fixed 'SyntaxError' error in production
+  * Fixed ```'SyntaxError'``` error in production
 
 1.0.0 / 2021-12-26
 ==================
