@@ -1,25 +1,28 @@
 {
-  "name": "erroran",
-  "version": "1.0.4",
-  "description": "A simple error handling middleware made for Express app.",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iamprincesly/erroran.git"
-  },
-  "keywords": [
-    "erroran",
-    "error",
-    "handler",
-    "node.js"
-  ],
-  "author": "Sylvanus Etim <iamprincesly@gmail.com> (https://github.com/iamprincesly/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iamprincesly/erroran/issues"
-  },
-  "homepage": "https://github.com/iamprincesly/erroran#readme",
-  "devDependencies": {
-    "jest": "^27.4.7"
-  }
+    "name": "erroran",
+    "version": "1.0.4",
+    "description": "A simple error handling middleware made for Express app.",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/iamprincesly/erroran.git"
+    },
+    "scripts": {
+        "test": "jest --watchAll"
+    },
+    "keywords": [
+        "erroran",
+        "error",
+        "handler",
+        "node.js"
+    ],
+    "author": "Sylvanus Etim <iamprincesly@gmail.com> (https://github.com/iamprincesly/)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/iamprincesly/erroran/issues"
+    },
+    "homepage": "https://github.com/iamprincesly/erroran#readme",
+    "devDependencies": {
+        "jest": "^27.4.7"
+    }
 }
