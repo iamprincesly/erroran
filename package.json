@@ -19,7 +19,7 @@
     "url": "https://github.com/iamprincesly/erroran/issues"
   },
   "homepage": "https://github.com/iamprincesly/erroran#readme",
-  "dependencies": {
+  "devDependencies": {
     "jest": "^27.4.7"
   }
 }
