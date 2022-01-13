@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/iamprincesly/erroran/issues"
   },
-  "homepage": "https://github.com/iamprincesly/erroran#readme"
+  "homepage": "https://github.com/iamprincesly/erroran#readme",
+  "dependencies": {
+    "jest": "^27.4.7"
+  }
 }
