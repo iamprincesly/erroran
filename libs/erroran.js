@@ -314,11 +314,11 @@ module.exports = class Erroran extends Error {
      * This will automatically send '504' status code
      * and your desire message to the client
      * @static
-     * @param {string} [message='Getway Timeout']
+     * @param {string} [message='Gateway Timeout']
      * @throw {object} Erroran
      * @memberof Erroran
      */
-    static getwayTimout(message = 'Getway Timeout') {
+    static gatewayTimout(message = 'Gateway Timeout') {
         throw new Erroran(message, this.GATEWAY_TIMEOUT);
     }
 

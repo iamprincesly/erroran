@@ -148,7 +148,7 @@ Erroran.internalServerError(); // 500 status code
 Erroran.notImplemented(); // 501 status code
 Erroran.badGateway(); // 502 status code
 Erroran.serviceUnavailable(); // 503 status code
-Erroran.getwayTimout(); // 504 status code
+Erroran.gatewayTimout(); // 504 status code
 Erroran.unsupportedHTTPVersion(); // 505 status code
 ```
 You can pass your desire error message to any of the Erroran static methods as an argument, example below.
