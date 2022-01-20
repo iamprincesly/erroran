@@ -16,7 +16,7 @@
 module.exports = class Erroran extends Error {
     static BAD_REQUEST = 400;
     static NOT_AUTHENTICATED = 401;
-    static PAYMENT_REQUIRED  = 402;
+    static PAYMENT_REQUIRED = 402;
     static FORBIDDEN = 403;
     static NOT_FOUND = 404;
     static UNSUPPORTED_METHOD = 405;
@@ -39,11 +39,20 @@ module.exports = class Erroran extends Error {
     static GATEWAY_TIMEOUT = 504;
     static UNSUPPORTED_HTTP_VERSION = 505;
 
-    constructor(message, statusCode = 500) {
+    constructor(message, statusCode = 500, name) {
         super(message);
+        this.name = name || this.constructor.name;
         this.statusCode = statusCode;
         this.status = `${statusCode}`.startsWith('4') ? 'failed' : 'error';
         this.isOperational = true;
+    }
+
+    static invalidArgument(method) {
+        throw new Erroran(
+            'Invalid arugment passed to: ' + method + '() static method',
+            500,
+            'ErroranInvalidArgument'
+        );
     }
 
     /**
@@ -55,6 +64,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static badRequest(message = 'Bad Request') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('badRequest');
+        }
+
         throw new Erroran(message, this.BAD_REQUEST);
     }
 
@@ -67,6 +80,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static notAuthenticated(message = 'Not authenticated') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('notAuthenticated');
+        }
+
         throw new Erroran(message, this.NOT_AUTHENTICATED);
     }
 
@@ -79,6 +96,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static paymentRequired(message = 'Payment Required') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('paymentRequired');
+        }
+
         throw new Erroran(message, this.PAYMENT_REQUIRED);
     }
 
@@ -91,6 +112,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static forbidden(message = 'Forbidden') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('forbidden');
+        }
+
         throw new Erroran(message, this.FORBIDDEN);
     }
 
@@ -103,6 +128,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static notFound(message = 'Not Found') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('notFound');
+        }
+
         throw new Erroran(message, this.NOT_FOUND);
     }
 
@@ -115,6 +144,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static unsupportedHTTPMethod(message = 'HTTP Method Not Allowed') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('unsupportedHTTPMethod');
+        }
+
         throw new Erroran(message, this.UNSUPPORTED_METHOD);
     }
 
@@ -127,6 +160,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static notAcceptable(message = 'Not Acceptable') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('notAcceptable');
+        }
+
         throw new Erroran(message, this.NOT_ACCEPTABLE);
     }
 
@@ -138,7 +175,13 @@ module.exports = class Erroran extends Error {
      * @throw {object} Erroran
      * @memberof Erroran
      */
-    static proxyAuthenticationRequired(message = 'Proxy Authentication Required') {
+    static proxyAuthenticationRequired(
+        message = 'Proxy Authentication Required'
+    ) {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('proxyAuthenticationRequired');
+        }
+
         throw new Erroran(message, this.PROXY_AUTHENTICATION_REQUIRED);
     }
 
@@ -151,6 +194,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static requestTimeout(message = 'Request Timeout') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('requestTimeout');
+        }
+
         throw new Erroran(message, this.REQUEST_TIMEOUT);
     }
 
@@ -163,6 +210,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static conflict(message = 'Conflict') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('conflict');
+        }
+
         throw new Erroran(message, this.CONFLICT);
     }
 
@@ -175,6 +226,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static gone(message = 'Gone') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('gone');
+        }
+
         throw new Erroran(message, this.GONE);
     }
 
@@ -187,6 +242,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static lengthRequired(message = 'Length Required') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('lengthRequired');
+        }
+
         throw new Erroran(message, this.LENGTH_REQUIRED);
     }
 
@@ -198,7 +257,11 @@ module.exports = class Erroran extends Error {
      * @throw {object} Erroran
      * @memberof Erroran
      */
-     static preconditionFailed(message = 'Precondition Failed') {
+    static preconditionFailed(message = 'Precondition Failed') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('preconditionFailed');
+        }
+
         throw new Erroran(message, this.PRECONDITION_FAILED);
     }
 
@@ -211,6 +274,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static requestEntityTooLarge(message = 'Request Entity Too Large') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('requestEntityTooLarge');
+        }
+
         throw new Erroran(message, this.REQUEST_ENTITY_TOO_LARGE);
     }
 
@@ -223,6 +290,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static requestURITooLong(message = 'Request-URI Too Long') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('requestURITooLong');
+        }
+
         throw new Erroran(message, this.REQUEST_URI_TOO_LONG);
     }
 
@@ -235,6 +306,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static unsupportedMediaType(message = 'Unsupported Media Type') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('unsupportedMediaType');
+        }
+
         throw new Erroran(message, this.UNSUPPORTED_MEDIA_TYPE);
     }
 
@@ -246,7 +321,13 @@ module.exports = class Erroran extends Error {
      * @throw {object} Erroran
      * @memberof Erroran
      */
-    static requestedRangeNotSatisfiable(message = 'Requested Range Not Satisfiable') {
+    static requestedRangeNotSatisfiable(
+        message = 'Requested Range Not Satisfiable'
+    ) {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('requestedRangeNotSatisfiable');
+        }
+
         throw new Erroran(message, this.REQUESTED_RANGE_NOT_SATISFIABLE);
     }
 
@@ -259,6 +340,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static expectationFailed(message = 'Expectation Failed') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('expectationFailed');
+        }
+
         throw new Erroran(message, this.EXPECTATION_FAILED);
     }
 
@@ -271,6 +356,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static internalServerError(message = 'Internal Server Error') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('internalServerError');
+        }
+
         throw new Erroran(message, this.INTERNAL_SERVER_ERROR);
     }
 
@@ -283,6 +372,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static notImplemented(message = 'Not Implemented') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('notImplemented');
+        }
+
         throw new Erroran(message, this.NOT_IMPLEMENTED);
     }
 
@@ -295,6 +388,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static badGateway(message = 'Bad Gateway') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('badGateway');
+        }
+
         throw new Erroran(message, this.BAD_GATEWAY);
     }
 
@@ -307,6 +404,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static serviceUnavailable(message = 'Service Unavailable') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('serviceUnavailable');
+        }
+
         throw new Erroran(message, this.SERVICE_UNAVAILABLE);
     }
 
@@ -319,6 +420,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static gatewayTimout(message = 'Gateway Timeout') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('gatewayTimout');
+        }
+
         throw new Erroran(message, this.GATEWAY_TIMEOUT);
     }
 
@@ -331,6 +436,10 @@ module.exports = class Erroran extends Error {
      * @memberof Erroran
      */
     static unsupportedHTTPVersion(message = 'HTTP Version Not Supported') {
+        if (typeof message !== 'string') {
+            return this.invalidArgument('unsupportedHTTPVersion');
+        }
+
         throw new Erroran(message, this.UNSUPPORTED_HTTP_VERSION);
     }
 };
