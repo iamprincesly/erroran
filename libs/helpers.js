@@ -14,24 +14,24 @@ var helpers = {};
 /**
  * Handle programming in production
  * and return it to Erroran class
- * 
+ *
  * At the moment this handle 'SyntaxError', 'Error', 'RangeError', 'URIError',
- * 'AggregateError', 'InternalError', 'EvalError', 'TypeError' and
- * 'ReferenceError' error names
+ * 'AggregateError', 'InternalError', 'EvalError', 'TypeError',
+ * 'ReferenceError', and 'ErroranInvalidArgument' error names
  * looking forward to add more in future as I discovered them
- * 
+ *
  * @param {string} msg
  * @return {object} Erroran
  * @memberof helpers
  */
 helpers.programmingError = (msg) => {
     return new Erroran(msg, 500);
-}
+};
 
 /**
- * Handle MongDB 'CastError' in production and return it 
+ * Handle MongDB 'CastError' in production and return it
  * to Erroran class
- * 
+ *
  * @param {object} err
  * @param {string} msg
  * @return {object} Erroran
@@ -45,7 +45,7 @@ helpers.CastError = (err, msg) => {
 /**
  * Handle MongDB '11000' Duplicate Key Error in production
  * and return it to Erroran class
- * 
+ *
  * @param {object} err
  * @param {string} msg
  * @return {object} Erroran
@@ -60,7 +60,7 @@ helpers.MongoDBDuplicateFieldsError = (err, msg) => {
 /**
  * Handle MongDB 'ValidationError' Error in production
  * and return it to Erroran class
- * 
+ *
  * @param {object} err
  * @param {string} msg
  * @return {object} Erroran
@@ -75,7 +75,7 @@ helpers.ValidationError = (err, msg) => {
 /**
  * Handle JWT 'JsonWebTokenError' Error in production
  * and return it to Erroran class
- * 
+ *
  * @param {string} msg
  * @return {object} Erroran
  * @memberof helpers
@@ -88,7 +88,7 @@ helpers.JWTMalfunctionError = (msg) => {
 /**
  * Handle JWT 'TokenExpiredError' Error in production
  * and return it to Erroran class
- * 
+ *
  * @param {string} msg
  * @return {object} Erroran
  * @memberof helpers
@@ -101,7 +101,7 @@ helpers.JWTExpiredError = (msg) => {
 /**
  * Handle all errors in development environment
  * and return full error stack in json response
- * 
+ *
  * @param {object} err
  * @param {object} req
  * @param {object} res
@@ -122,7 +122,7 @@ helpers.handleDevError = (err, req, res) => {
 /**
  * Handle all errors in production environment
  * and return only error status and message in json response
- * 
+ *
  * @param {object} err
  * @param {object} req
  * @param {object} res
