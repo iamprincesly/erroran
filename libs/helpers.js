@@ -139,7 +139,7 @@ helpers.handleProdError = (err, req, res) => {
 
     return res.status(500).json({
         status: err.status,
-        message: err.ProgrammingErrorMsg,
+        message: err.proErrorMsg,
     });
 };
 
