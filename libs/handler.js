@@ -24,16 +24,13 @@ module.exports = ErroranHandler;
 function ErroranHandler(options) {
     var opts = options || {};
 
-    if (!process.env.NODE_ENV) {
-        process.env.NODE_ENV = 'development';
-    }
+    var appEnv = process.env.NODE_ENV || 'development';
 
     // Set default programming error message in production
-    var proErrorMsg =
-        opts.ProgrammingErrorMsg || 'Something went wrong, please try again';
+    var proErrorMsg = opts.ProgrammingErrorMsg || 'Something went wrong, please try again';
 
     return function errorMiddleware(err, req, res, next) {
-        if (process.env.NODE_ENV === 'production') {
+        if (appEnv === 'production') {
             var error = { ...err };
 
             var errorMessage;
@@ -48,7 +45,6 @@ function ErroranHandler(options) {
              * 'ReferenceError', and 'ErroranInvalidArgument' error names at the moment.
              * Looking forward to add more in the future as I discovered them.
              */
-
             var proErorrNames = [
                 'Error',
                 'SyntaxError',
