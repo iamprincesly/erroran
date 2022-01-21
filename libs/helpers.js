@@ -25,7 +25,7 @@ var helpers = {};
  * @memberof helpers
  */
 helpers.programmingError = (msg) => {
-    return new Erroran(msg, 500);
+    return new Erroran(msg, 500, '', false);
 };
 
 /**
@@ -138,7 +138,7 @@ helpers.handleProdError = (err, req, res) => {
 
     return res.status(500).json({
         status: err.status,
-        message: err.proErrorMsg,
+        message: err.proErrorMsg || err.message,
     });
 };
 
