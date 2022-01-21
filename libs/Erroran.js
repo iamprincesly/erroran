@@ -47,7 +47,7 @@ module.exports = class Erroran extends Error {
         this.isOperational = operational ? true : false;
     }
 
-    static invalidArgument(method) {
+    static #_invalidArgument(method) {
         throw new this(
             'Invalid arugment passed to: ' + method + '() static method',
             500,
@@ -65,7 +65,7 @@ module.exports = class Erroran extends Error {
      */
     static badRequest(message = 'Bad Request') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('badRequest');
+            return this.#_invalidArgument('badRequest');
         }
 
         throw new this(message, this.BAD_REQUEST);
@@ -81,7 +81,7 @@ module.exports = class Erroran extends Error {
      */
     static notAuthenticated(message = 'Not authenticated') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('notAuthenticated');
+            return this.#_invalidArgument('notAuthenticated');
         }
 
         throw new this(message, this.NOT_AUTHENTICATED);
@@ -97,7 +97,7 @@ module.exports = class Erroran extends Error {
      */
     static paymentRequired(message = 'Payment Required') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('paymentRequired');
+            return this.#_invalidArgument('paymentRequired');
         }
 
         throw new this(message, this.PAYMENT_REQUIRED);
@@ -113,7 +113,7 @@ module.exports = class Erroran extends Error {
      */
     static forbidden(message = 'Forbidden') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('forbidden');
+            return this.#_invalidArgument('forbidden');
         }
 
         throw new this(message, this.FORBIDDEN);
@@ -129,7 +129,7 @@ module.exports = class Erroran extends Error {
      */
     static notFound(message = 'Not Found') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('notFound');
+            return this.#_invalidArgument('notFound');
         }
 
         throw new this(message, this.NOT_FOUND);
@@ -145,7 +145,7 @@ module.exports = class Erroran extends Error {
      */
     static unsupportedHTTPMethod(message = 'HTTP Method Not Allowed') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('unsupportedHTTPMethod');
+            return this.#_invalidArgument('unsupportedHTTPMethod');
         }
 
         throw new this(message, this.UNSUPPORTED_METHOD);
@@ -161,7 +161,7 @@ module.exports = class Erroran extends Error {
      */
     static notAcceptable(message = 'Not Acceptable') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('notAcceptable');
+            return this.#_invalidArgument('notAcceptable');
         }
 
         throw new this(message, this.NOT_ACCEPTABLE);
@@ -179,7 +179,7 @@ module.exports = class Erroran extends Error {
         message = 'Proxy Authentication Required'
     ) {
         if (typeof message !== 'string') {
-            return this.invalidArgument('proxyAuthenticationRequired');
+            return this.#_invalidArgument('proxyAuthenticationRequired');
         }
 
         throw new this(message, this.PROXY_AUTHENTICATION_REQUIRED);
@@ -195,7 +195,7 @@ module.exports = class Erroran extends Error {
      */
     static requestTimeout(message = 'Request Timeout') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('requestTimeout');
+            return this.#_invalidArgument('requestTimeout');
         }
 
         throw new this(message, this.REQUEST_TIMEOUT);
@@ -211,7 +211,7 @@ module.exports = class Erroran extends Error {
      */
     static conflict(message = 'Conflict') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('conflict');
+            return this.#_invalidArgument('conflict');
         }
 
         throw new this(message, this.CONFLICT);
@@ -227,7 +227,7 @@ module.exports = class Erroran extends Error {
      */
     static gone(message = 'Gone') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('gone');
+            return this.#_invalidArgument('gone');
         }
 
         throw new this(message, this.GONE);
@@ -243,7 +243,7 @@ module.exports = class Erroran extends Error {
      */
     static lengthRequired(message = 'Length Required') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('lengthRequired');
+            return this.#_invalidArgument('lengthRequired');
         }
 
         throw new this(message, this.LENGTH_REQUIRED);
@@ -259,7 +259,7 @@ module.exports = class Erroran extends Error {
      */
     static preconditionFailed(message = 'Precondition Failed') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('preconditionFailed');
+            return this.#_invalidArgument('preconditionFailed');
         }
 
         throw new this(message, this.PRECONDITION_FAILED);
@@ -275,7 +275,7 @@ module.exports = class Erroran extends Error {
      */
     static requestEntityTooLarge(message = 'Request Entity Too Large') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('requestEntityTooLarge');
+            return this.#_invalidArgument('requestEntityTooLarge');
         }
 
         throw new this(message, this.REQUEST_ENTITY_TOO_LARGE);
@@ -291,7 +291,7 @@ module.exports = class Erroran extends Error {
      */
     static requestURITooLong(message = 'Request-URI Too Long') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('requestURITooLong');
+            return this.#_invalidArgument('requestURITooLong');
         }
 
         throw new this(message, this.REQUEST_URI_TOO_LONG);
@@ -307,7 +307,7 @@ module.exports = class Erroran extends Error {
      */
     static unsupportedMediaType(message = 'Unsupported Media Type') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('unsupportedMediaType');
+            return this.#_invalidArgument('unsupportedMediaType');
         }
 
         throw new this(message, this.UNSUPPORTED_MEDIA_TYPE);
@@ -325,7 +325,7 @@ module.exports = class Erroran extends Error {
         message = 'Requested Range Not Satisfiable'
     ) {
         if (typeof message !== 'string') {
-            return this.invalidArgument('requestedRangeNotSatisfiable');
+            return this.#_invalidArgument('requestedRangeNotSatisfiable');
         }
 
         throw new this(message, this.REQUESTED_RANGE_NOT_SATISFIABLE);
@@ -341,7 +341,7 @@ module.exports = class Erroran extends Error {
      */
     static expectationFailed(message = 'Expectation Failed') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('expectationFailed');
+            return this.#_invalidArgument('expectationFailed');
         }
 
         throw new this(message, this.EXPECTATION_FAILED);
@@ -357,7 +357,7 @@ module.exports = class Erroran extends Error {
      */
     static internalServerError(message = 'Internal Server Error') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('internalServerError');
+            return this.#_invalidArgument('internalServerError');
         }
 
         throw new this(message, this.INTERNAL_SERVER_ERROR);
@@ -373,7 +373,7 @@ module.exports = class Erroran extends Error {
      */
     static notImplemented(message = 'Not Implemented') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('notImplemented');
+            return this.#_invalidArgument('notImplemented');
         }
 
         throw new this(message, this.NOT_IMPLEMENTED);
@@ -389,7 +389,7 @@ module.exports = class Erroran extends Error {
      */
     static badGateway(message = 'Bad Gateway') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('badGateway');
+            return this.#_invalidArgument('badGateway');
         }
 
         throw new this(message, this.BAD_GATEWAY);
@@ -405,7 +405,7 @@ module.exports = class Erroran extends Error {
      */
     static serviceUnavailable(message = 'Service Unavailable') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('serviceUnavailable');
+            return this.#_invalidArgument('serviceUnavailable');
         }
 
         throw new this(message, this.SERVICE_UNAVAILABLE);
@@ -421,7 +421,7 @@ module.exports = class Erroran extends Error {
      */
     static gatewayTimout(message = 'Gateway Timeout') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('gatewayTimout');
+            return this.#_invalidArgument('gatewayTimout');
         }
 
         throw new this(message, this.GATEWAY_TIMEOUT);
@@ -437,7 +437,7 @@ module.exports = class Erroran extends Error {
      */
     static unsupportedHTTPVersion(message = 'HTTP Version Not Supported') {
         if (typeof message !== 'string') {
-            return this.invalidArgument('unsupportedHTTPVersion');
+            return this.#_invalidArgument('unsupportedHTTPVersion');
         }
 
         throw new this(message, this.UNSUPPORTED_HTTP_VERSION);
