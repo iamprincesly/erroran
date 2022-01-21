@@ -14,14 +14,14 @@
  */
 'use strict';
 
-var erroranHandler = require('./libs/handler');
+var ErroranHandler = require('./libs/handler');
 var Erroran = require('./libs/erroran');
 
 /**
  * Export Erroran main class and erroran error 
  * handling middleware
  */
-module.exports = { Erroran, erroranHandler };
+module.exports = { Erroran, ErroranHandler };
 
 
 

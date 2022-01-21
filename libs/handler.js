@@ -12,7 +12,7 @@ var helpers = require('./helpers');
 /**
  * Export error middleware.
  */
-module.exports = erroranHandler;
+module.exports = ErroranHandler;
 
 /**
  * This is the main Erroran error handling middleware.
@@ -21,7 +21,7 @@ module.exports = erroranHandler;
  * @param {*} [options]
  * @return {function} (err, req, res, next)
  */
-function erroranHandler(options) {
+function ErroranHandler(options) {
     var opts = options || {};
 
     if (!process.env.NODE_ENV) {
