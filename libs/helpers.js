@@ -53,7 +53,8 @@ helpers.CastError = (err, msg) => {
  */
 helpers.MongoDBDuplicateFieldsError = (err, msg) => {
     var value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0].trim('"');
-    var message = msg || `Duplicate field value: ${value}. Please use another value`;
+    var message =
+        msg || `Duplicate field value: ${value}. Please use another value`;
     return new Erroran(message, 400);
 };
 
@@ -105,7 +106,7 @@ helpers.JWTExpiredError = (msg) => {
  * @param {object} err
  * @param {object} req
  * @param {object} res
- * @return {object} Erroran
+ * @return {object} res
  * @memberof helpers
  */
 helpers.handleDevError = (err, req, res) => {
@@ -113,8 +114,6 @@ helpers.handleDevError = (err, req, res) => {
         status: err.status,
         message: err.message,
         name: err.name,
-        path: err.path,
-        errors: err.errors,
         stack: err.stack,
     });
 };
@@ -126,7 +125,7 @@ helpers.handleDevError = (err, req, res) => {
  * @param {object} err
  * @param {object} req
  * @param {object} res
- * @return {object} Erroran
+ * @return {object} res
  * @memberof helpers
  */
 helpers.handleProdError = (err, req, res) => {
