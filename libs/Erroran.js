@@ -39,28 +39,28 @@ module.exports = class Erroran extends Error {
     static GATEWAY_TIMEOUT = 504;
     static UNSUPPORTED_HTTP_VERSION = 505;
 
-    constructor(message, statusCode = 500, name) {
+    constructor(message, statusCode = 500, name, operational = true) {
         super(message);
         this.name = name || this.constructor.name;
         this.statusCode = statusCode;
         this.status = `${statusCode}`.startsWith('4') ? 'failed' : 'error';
-        this.isOperational = true;
+        this.isOperational = operational ? true : false;
     }
 
     static invalidArgument(method) {
-        throw new Erroran(
+        throw new this(
             'Invalid arugment passed to: ' + method + '() static method',
             500,
-            'ErroranInvalidArgument'
+            'ErroranInvalidArgument', false
         );
     }
 
     /**
-     * This will automatically send '400' status code
+     * Automatically send '400' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Bad Request]
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static badRequest(message = 'Bad Request') {
@@ -68,15 +68,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('badRequest');
         }
 
-        throw new Erroran(message, this.BAD_REQUEST);
+        throw new this(message, this.BAD_REQUEST);
     }
 
     /**
-     * This will automatically send '401' status code
+     * Automatically send '401' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Not authenticated']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static notAuthenticated(message = 'Not authenticated') {
@@ -84,15 +84,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('notAuthenticated');
         }
 
-        throw new Erroran(message, this.NOT_AUTHENTICATED);
+        throw new this(message, this.NOT_AUTHENTICATED);
     }
 
     /**
-     * This will automatically send '402' status code
+     * Automatically send '402' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Payment Required']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static paymentRequired(message = 'Payment Required') {
@@ -100,15 +100,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('paymentRequired');
         }
 
-        throw new Erroran(message, this.PAYMENT_REQUIRED);
+        throw new this(message, this.PAYMENT_REQUIRED);
     }
 
     /**
-     * This will automatically send '403' status code
+     * Automatically send '403' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Forbidden']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static forbidden(message = 'Forbidden') {
@@ -116,15 +116,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('forbidden');
         }
 
-        throw new Erroran(message, this.FORBIDDEN);
+        throw new this(message, this.FORBIDDEN);
     }
 
     /**
-     * This will automatically send '404' status code
+     * Automatically send '404' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Not Found]
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static notFound(message = 'Not Found') {
@@ -132,15 +132,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('notFound');
         }
 
-        throw new Erroran(message, this.NOT_FOUND);
+        throw new this(message, this.NOT_FOUND);
     }
 
     /**
-     * This will automatically send '405' status code
+     * Automatically send '405' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='HTTP Method Not Allowed']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static unsupportedHTTPMethod(message = 'HTTP Method Not Allowed') {
@@ -148,15 +148,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('unsupportedHTTPMethod');
         }
 
-        throw new Erroran(message, this.UNSUPPORTED_METHOD);
+        throw new this(message, this.UNSUPPORTED_METHOD);
     }
 
     /**
-     * This will automatically send '406' status code
+     * Automatically send '406' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Not Acceptable']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static notAcceptable(message = 'Not Acceptable') {
@@ -164,15 +164,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('notAcceptable');
         }
 
-        throw new Erroran(message, this.NOT_ACCEPTABLE);
+        throw new this(message, this.NOT_ACCEPTABLE);
     }
 
     /**
-     * This will automatically send '407' status code
+     * Automatically send '407' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Proxy Authentication Required']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static proxyAuthenticationRequired(
@@ -182,15 +182,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('proxyAuthenticationRequired');
         }
 
-        throw new Erroran(message, this.PROXY_AUTHENTICATION_REQUIRED);
+        throw new this(message, this.PROXY_AUTHENTICATION_REQUIRED);
     }
 
     /**
-     * This will automatically send '408' status code
+     * Automatically send '408' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Request Timeout']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static requestTimeout(message = 'Request Timeout') {
@@ -198,15 +198,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('requestTimeout');
         }
 
-        throw new Erroran(message, this.REQUEST_TIMEOUT);
+        throw new this(message, this.REQUEST_TIMEOUT);
     }
 
     /**
-     * This will automatically send '409' status code
+     * Automatically send '409' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Conflict']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static conflict(message = 'Conflict') {
@@ -214,15 +214,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('conflict');
         }
 
-        throw new Erroran(message, this.CONFLICT);
+        throw new this(message, this.CONFLICT);
     }
 
     /**
-     * This will automatically send '410' status code
+     * Automatically send '410' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Gone']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static gone(message = 'Gone') {
@@ -230,15 +230,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('gone');
         }
 
-        throw new Erroran(message, this.GONE);
+        throw new this(message, this.GONE);
     }
 
     /**
-     * This will automatically send '411' status code
+     * Automatically send '411' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Length Required']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static lengthRequired(message = 'Length Required') {
@@ -246,15 +246,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('lengthRequired');
         }
 
-        throw new Erroran(message, this.LENGTH_REQUIRED);
+        throw new this(message, this.LENGTH_REQUIRED);
     }
 
     /**
-     * This will automatically send '412' status code
+     * Automatically send '412' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Precondition Failed']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static preconditionFailed(message = 'Precondition Failed') {
@@ -262,15 +262,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('preconditionFailed');
         }
 
-        throw new Erroran(message, this.PRECONDITION_FAILED);
+        throw new this(message, this.PRECONDITION_FAILED);
     }
 
     /**
-     * This will automatically send '413' status code
+     * Automatically send '413' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Request Entity Too Large']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static requestEntityTooLarge(message = 'Request Entity Too Large') {
@@ -278,15 +278,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('requestEntityTooLarge');
         }
 
-        throw new Erroran(message, this.REQUEST_ENTITY_TOO_LARGE);
+        throw new this(message, this.REQUEST_ENTITY_TOO_LARGE);
     }
 
     /**
-     * This will automatically send '414' status code
+     * Automatically send '414' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Request-URI Too Long']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static requestURITooLong(message = 'Request-URI Too Long') {
@@ -294,15 +294,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('requestURITooLong');
         }
 
-        throw new Erroran(message, this.REQUEST_URI_TOO_LONG);
+        throw new this(message, this.REQUEST_URI_TOO_LONG);
     }
 
     /**
-     * This will automatically send '415' status code
+     * Automatically send '415' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Unsupported Media Type']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static unsupportedMediaType(message = 'Unsupported Media Type') {
@@ -310,15 +310,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('unsupportedMediaType');
         }
 
-        throw new Erroran(message, this.UNSUPPORTED_MEDIA_TYPE);
+        throw new this(message, this.UNSUPPORTED_MEDIA_TYPE);
     }
 
     /**
-     * This will automatically send '416' status code
+     * Automatically send '416' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Requested Range Not Satisfiable']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static requestedRangeNotSatisfiable(
@@ -328,15 +328,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('requestedRangeNotSatisfiable');
         }
 
-        throw new Erroran(message, this.REQUESTED_RANGE_NOT_SATISFIABLE);
+        throw new this(message, this.REQUESTED_RANGE_NOT_SATISFIABLE);
     }
 
     /**
-     * This will automatically send '417' status code
+     * Automatically send '417' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Expectation Failed']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static expectationFailed(message = 'Expectation Failed') {
@@ -344,15 +344,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('expectationFailed');
         }
 
-        throw new Erroran(message, this.EXPECTATION_FAILED);
+        throw new this(message, this.EXPECTATION_FAILED);
     }
 
     /**
-     * This will automatically send '500' status code
+     * Automatically send '500' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Internal Server Error']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static internalServerError(message = 'Internal Server Error') {
@@ -360,15 +360,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('internalServerError');
         }
 
-        throw new Erroran(message, this.INTERNAL_SERVER_ERROR);
+        throw new this(message, this.INTERNAL_SERVER_ERROR);
     }
 
     /**
-     * This will automatically send '501' status code
+     * Automatically send '501' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Not Implemented']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static notImplemented(message = 'Not Implemented') {
@@ -376,15 +376,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('notImplemented');
         }
 
-        throw new Erroran(message, this.NOT_IMPLEMENTED);
+        throw new this(message, this.NOT_IMPLEMENTED);
     }
 
     /**
-     * This will automatically send '502' status code
+     * Automatically send '502' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Bad Gateway']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static badGateway(message = 'Bad Gateway') {
@@ -392,15 +392,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('badGateway');
         }
 
-        throw new Erroran(message, this.BAD_GATEWAY);
+        throw new this(message, this.BAD_GATEWAY);
     }
 
     /**
-     * This will automatically send '503' status code
+     * Automatically send '503' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Service Unavailable']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static serviceUnavailable(message = 'Service Unavailable') {
@@ -408,15 +408,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('serviceUnavailable');
         }
 
-        throw new Erroran(message, this.SERVICE_UNAVAILABLE);
+        throw new this(message, this.SERVICE_UNAVAILABLE);
     }
 
     /**
-     * This will automatically send '504' status code
+     * Automatically send '504' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='Gateway Timeout']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static gatewayTimout(message = 'Gateway Timeout') {
@@ -424,15 +424,15 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('gatewayTimout');
         }
 
-        throw new Erroran(message, this.GATEWAY_TIMEOUT);
+        throw new this(message, this.GATEWAY_TIMEOUT);
     }
 
     /**
-     * This will automatically send '505' status code
+     * Automatically send '505' status code
      * and your desire message to the client
      * @static
      * @param {string} [message='HTTP Version Not Supported']
-     * @throw {object} Erroran
+     * @throw {object} this
      * @memberof Erroran
      */
     static unsupportedHTTPVersion(message = 'HTTP Version Not Supported') {
@@ -440,6 +440,6 @@ module.exports = class Erroran extends Error {
             return this.invalidArgument('unsupportedHTTPVersion');
         }
 
-        throw new Erroran(message, this.UNSUPPORTED_HTTP_VERSION);
+        throw new this(message, this.UNSUPPORTED_HTTP_VERSION);
     }
 };
