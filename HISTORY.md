@@ -1,3 +1,7 @@
+2.0.0 / 2022-1-25
+==================
+  * Changed ```getwayTimeout``` method to ```gatewayTimeout```
+
 1.0.4 / 2022-1-8
 ==================
   * Added support for ```'EvalError'```, ```'RangeError'```, ```'URIError'```, ```'AggregateError'``` and ```'InternalError'``` erorr name
