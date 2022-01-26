@@ -1,6 +1,6 @@
 # Erroran
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamprincesly/erroran/Release?style=flat-square) ![NPM](https://img.shields.io/npm/l/erroran?style=flat-square) ![npm](https://img.shields.io/npm/v/erroran?style=flat-square) ![npm](https://img.shields.io/npm/dm/erroran?style=flat-square) ![GitHub Repo stars](https://img.shields.io/github/stars/iamprincesly/erroran?style=flat-square) ![Twitter Follow](https://img.shields.io/twitter/follow/iamprincesly?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamprincesly/erroran/Release?style=flat-square) ![NPM](https://img.shields.io/npm/l/erroran?style=flat-square) ![npm](https://img.shields.io/npm/v/erroran?style=flat-square) ![npm](https://img.shields.io/npm/dm/erroran?style=flat-square) ![GitHub Repo stars](https://img.shields.io/github/stars/iamprincesly/erroran?style=flat-square) [![Rate on Openbase](https://badges.openbase.com/js/rating/erroran.svg)](https://openbase.com/js/erroran?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge) ![Twitter Follow](https://img.shields.io/twitter/follow/iamprincesly?style=flat-square)
 
 A simple error handling middleware made for [Express](http://expressjs.com/) app. It can be used for throwing operational error in JSON response to the client. Erroran also catch all programming errors in production and throw friendly/desired error message to client.
 
