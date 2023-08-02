@@ -1,3 +1,7 @@
+2.0.1 / 2023-08-03
+==================
+  * Fix bug
+
 2.0.0 / 2022-1-25
 ==================
   * Changed ```getwayTimeout``` method to ```gatewayTimeout```
